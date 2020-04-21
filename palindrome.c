@@ -34,14 +34,13 @@ palindrome_loop
 
 	MOV r2, #0
 	STR r2, [r1]
+		
 	BX lr
 
 palindrome_exit
-	// MOV r1, #1
 	MOV r2, #1
 	STR r2, [r1]
-	// LDR r1, [r2]
-	
+
 	BX lr
 }
 
@@ -67,5 +66,6 @@ int main() {
 	palindrome(str, result);
 	
 	while (1) {
+		
 	}
 }
