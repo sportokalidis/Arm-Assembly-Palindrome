@@ -1,9 +1,13 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 __asm void palindrome(const char* str, int* result) {
 
 	MOV r2, #0
 
+
 size_loop
-	LDRB  r3, [r0]       // Load byte into r2 from memory pointed to by r0 (str pointer)
+	LDRB  r3, [r0]       // Load byte into r3 from memory pointed to by r0 (str pointer)
 	ADDS  r0, #1         // Increment str pointer
 	ADDS  r2, #1         // Increment size counter
 	CMP   r3, #0         // Was the byte 0?
@@ -29,31 +33,38 @@ palindrome_loop
 	BEQ palindrome_loop
 
 	MOV r2, #0
-	STRB r2, [r1]
-	BX    lr
+	STR r2, [r1]
+	BX lr
 
 palindrome_exit
+	// MOV r1, #1
 	MOV r2, #1
-	STRB r2, [r1]
-	BX    lr
+	STR r2, [r1]
+	// LDR r1, [r2]
+	
+	BX lr
 }
 
 
 
 int main() {
 	const char str[] = "SAVVAS";
-	int* result;
+	int result[1];
 	
 	// result = (int*) malloc(sizeof(int)); 
 	palindrome(str, result);
 	
-	if(*result) {
-		//printf("%s: is a palindrome string !", str);
+	// result[0] = 0;
+	if(result[0] == 1) {
+		// printf("%s: is a palindrome string !", str);
+		char flag1[] =  "Is palindrome" ;
 	}
-	else {
-		//printf("%s: is not a palindrome string !", str);
+	else if(result[0] == 0){
+		// printf("%s: is not a palindrome string !", str);
+		char flag2[] = "No Palindrome";
+	}
 	
-	}
+	palindrome(str, result);
 	
 	while (1) {
 	}
