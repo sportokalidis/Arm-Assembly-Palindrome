@@ -34,38 +34,82 @@ palindrome_loop
 
 	MOV r2, #0
 	STR r2, [r1]
-		
 	BX lr
 
 palindrome_exit
+	// MOV r1, #1
 	MOV r2, #1
 	STR r2, [r1]
-
+	// LDR r1, [r2]
+	
 	BX lr
 }
 
 
 
 int main() {
-	const char str[] = "SAVVAS";
+	
 	int result[1];
+	volatile int flag = 0;
+	int counter = 0;
+	
+	/*#####################  1st  ##################################### */
+	
+	counter++;
+	const char str[] = "SAVklkklkVAS";
 	
 	// result = (int*) malloc(sizeof(int)); 
 	palindrome(str, result);
 	
-	// result[0] = 0;
 	if(result[0] == 1) {
 		// printf("%s: is a palindrome string !", str);
-		char flag1[] =  "Is palindrome" ;
+		// char flag1[] =  "Is palindrome" ;
+		flag = 1;
 	}
 	else if(result[0] == 0){
 		// printf("%s: is not a palindrome string !", str);
-		char flag2[] = "No Palindrome";
+		// char flag2[] = "No Palindrome";
+		flag = 0;
 	}
 	
-	palindrome(str, result);
+	/*#####################  2nd  ##################################### */
+	
+	counter++;
+	const char str2[] = "SAVVAS";
+	
+	palindrome(str2, result);
+	
+	if(result[0] == 1) {
+		// printf("%s: is a palindrome string !", str);
+		// char flag1[] =  "Is palindrome" ;
+		flag = 1;
+	}
+	else if(result[0] == 0){
+		// printf("%s: is not a palindrome string !", str);
+		// char flag2[] = "No Palindrome";
+		flag = 0;
+	}
+	
+	/*#####################  3rd  ##################################### */
+	
+	counter++;
+	const char str3[] = "No Palindrome";
+	
+	palindrome(str3, result);
+	
+	if(result[0] == 1) {
+		// printf("%s: is a palindrome string !", str);
+		// char flag1[] =  "Is palindrome" ;
+		flag = 1;
+	}
+	else if(result[0] == 0){
+		// printf("%s: is not a palindrome string !", str);
+		// char flag2[] = "No Palindrome";
+		flag = 0;
+	}
+	
+	palindrome(str3, result);
 	
 	while (1) {
-		
 	}
 }
